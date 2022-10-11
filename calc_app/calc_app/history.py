@@ -1,33 +1,53 @@
 """ history module """
 
-from collections.abc import Callable
-from typing import TypedDict
+# from typing import cast
 
-class HistoryEntry(TypedDict):
+class HistoryEntry:
     """ history entry dictionary """
-    id: int
-    command: str
-    operand: float
+    def __init__(self, history_entry_id: int, command: str, operand: float):
+        self.history_entry_id = history_entry_id
+        self.command = command
+        self.operand = operand
 
-math_ops: dict[str, Callable[[float, float], float]] = {
-    "add": lambda a, b: a + b,
-    "subtract": lambda a, b: a - b,
-    "multiply": lambda a, b: a * b,
-    "divide": lambda a, b: a / b
-}
+    def __repr__(self) -> str:
+        return (
+            f"Id: {self.history_entry_id}"
+            f", Command: {self.command}"
+            f", Operand: {self.operand}"
+        )
 
-def calc_result(history: list[HistoryEntry]) -> float:
-    """ calculate the current result from the history """
-    result: float = 0
-    for entry in history:
-        math_op = math_ops[entry["command"]]
-        result = math_op(result, entry["operand"])
-    return result
+class History:
+    """ history class"""
+
+    history: list[HistoryEntry]
+
+    def __init__(self) -> None:
+        # self.history = cast(list[HistoryEntry], [])
+        self.history = []
+
+    def __get_next_id(self) -> int:
+        """ get next id """
+        if len(self.history) == 0:
+            return 1
+        ids = [ entry.history_entry_id for entry in self.history]
+        return max(ids) + 1
+
+    def append_entry(self, command_name: str, operand: float) -> None:
+        """ append a history entry"""
+        self.history.append(
+            HistoryEntry(self.__get_next_id(), command_name, operand))
+
+    def remove_entry(self, entry_id: int) -> None:
+        """ remove a history entry by id """
+        for entry in self.history:
+            if entry.history_entry_id == entry_id:
+                self.history.remove(entry)
+
+    def clear_entries(self) -> None:
+        """ clear history entries """
+        self.history = []
 
 
-def get_next_id(history: list[HistoryEntry]) -> int:
-    """ get next id """
-    if len(history) == 0:
-        return 1
-    ids = [ entry["id"] for entry in history]
-    return max(ids) + 1
+
+
+
