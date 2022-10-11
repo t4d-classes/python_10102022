@@ -1,4 +1,7 @@
 from calc_app.user_input import input_command, input_operand, input_entry_id
+# from .user_input import input_command, input_operand, input_entry_id
+# from calc_app import user_input
+# from . import user_input
 
 math_ops = {
     "add": lambda a, b: a + b,
