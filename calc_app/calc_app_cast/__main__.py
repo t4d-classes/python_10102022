@@ -1,15 +1,16 @@
 """ calc app main """
 
+from typing import Any
 from calc_app.user_input import input_command
 from calc_app.user_output import output_unknown_command
 from calc_app import commands as cmds
-from calc_app.history import math_ops, HistoryEntry
+from calc_app.history import math_ops
 
 
 def app() -> None:
     """ calc app main function """
 
-    history: list[HistoryEntry] = []
+    history: list[dict[str,Any]] = []
 
     command = input_command()
 
