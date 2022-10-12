@@ -18,6 +18,11 @@ with open("newcolors.txt", "w") as colors_file:
         colors_file.write(f"{color}\n")
 ```
 
-6. Think about code organization as you implement the solution.
+6. Some hints:
 
-7. Ensure it works!
+ - You can use the CSV file apis in Python
+ - Don't forget about the `split` and `join` functions on strings (this will be the approach I use for the solution)
+
+7. Think about code organization as you implement the solution.
+
+8. Ensure it works!
