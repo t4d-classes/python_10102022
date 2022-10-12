@@ -36,7 +36,7 @@ class Calculator:
     def get_result(self) -> float:
         """ calculate the current result from the history """
         result: float = 0
-        for entry in self.history.history:
+        for entry in self.history:
             math_op = math_ops[entry.command]
             result = math_op(result, entry.operand)
         return result

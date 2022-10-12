@@ -1,6 +1,7 @@
-""" history module """
+""" history abstract class module """
 
-# from typing import cast
+from typing import Iterator
+from abc import ABC, abstractmethod
 
 class HistoryEntry:
     """ history entry dictionary """
@@ -16,38 +17,26 @@ class HistoryEntry:
             f", Operand: {self.operand}"
         )
 
-class History:
-    """ history class"""
+class History(ABC):
+    """ history abstact class """
 
-    history: list[HistoryEntry]
-
-    def __init__(self) -> None:
-        # self.history = cast(list[HistoryEntry], [])
-        self.history = []
-
-    def __get_next_id(self) -> int:
-        """ get next id """
-        if len(self.history) == 0:
-            return 1
-        ids = [ entry.history_entry_id for entry in self.history]
-        return max(ids) + 1
-
+    @abstractmethod
     def append_entry(self, command_name: str, operand: float) -> None:
         """ append a history entry"""
-        self.history.append(
-            HistoryEntry(self.__get_next_id(), command_name, operand))
 
+    @abstractmethod
     def remove_entry(self, entry_id: int) -> None:
         """ remove a history entry by id """
-        for entry in self.history:
-            if entry.history_entry_id == entry_id:
-                self.history.remove(entry)
 
+    @abstractmethod
     def clear_entries(self) -> None:
         """ clear history entries """
-        self.history = []
 
+    @abstractmethod
+    def __iter__(self) -> Iterator[HistoryEntry]:
+        ...
 
-
-
-
+    @abstractmethod
+    def __next__(self) -> HistoryEntry:
+        ...
+      

@@ -4,7 +4,7 @@ from typing import Any
 from calc_app.user_input import input_command
 from calc_app.user_output import output_unknown_command
 from calc_app import calculator as cmds
-from calc_app.history import math_ops
+from calc_app.history_list import math_ops
 
 
 def app() -> None:

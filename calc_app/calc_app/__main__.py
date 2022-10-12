@@ -6,12 +6,13 @@ from calc_app.user_output import (
 )
 from calc_app.calculator import math_ops, Calculator
 from calc_app.history import History
+from calc_app.history_list import HistoryList
 
 
 def app() -> None:
     """ calc app main function """
 
-    history = History()
+    history: History = HistoryList()
     calculator = Calculator(history)
 
     command = input_command()
