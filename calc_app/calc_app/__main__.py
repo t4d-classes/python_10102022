@@ -1,5 +1,7 @@
 """ calc app main """
 
+from calc_app.history_file_storage import HistoryFileStorage
+from calc_app.history_storage import HistoryStorage
 from calc_app.user_input import input_command, input_operand, input_entry_id
 from calc_app.user_output import (
     output_result, output_list, output_unknown_command
@@ -14,6 +16,7 @@ def app() -> None:
 
     history: History = HistoryList()
     calculator = Calculator(history)
+    history_storage: HistoryStorage = HistoryFileStorage()
 
     command = input_command()
 
@@ -32,6 +35,12 @@ def app() -> None:
             calculator.remove_history_entry(entry_id)
         elif command == "result":
             output_result(calculator.get_result())
+        elif command == "save":
+            history_storage.save(history)
+            print("history saved")
+        elif command == "load":
+            history_storage.load(history)
+            print("history loaded")
         else:
             output_unknown_command()
 

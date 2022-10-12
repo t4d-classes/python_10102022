@@ -2,7 +2,7 @@
 
 from collections.abc import Callable
 
-from calc_app.history import History
+from calc_app.history import History, HistoryEntry
 
 math_ops: dict[str, Callable[[float, float], float]] = {
     "add": lambda a, b: a + b,
@@ -23,7 +23,11 @@ class Calculator:
 
     def get_history(self) -> list[str]:
         """ command print history """
-        return [ f"Entry: {entry}" for entry in self.history.history ]
+        return [ f"Entry: {entry}" for entry in self.history ]
+
+    def get_history_list(self) -> list[HistoryEntry]:
+        """ gets the history entry """
+        return list(self.history)
 
     def remove_history_entry(self, entry_id: int) -> None:
         """ command remove history entry """

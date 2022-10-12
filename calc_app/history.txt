@@ -1,0 +1,4 @@
+add|10.0
+subtract|2.0
+multiply|3.0
+divide|6.0
