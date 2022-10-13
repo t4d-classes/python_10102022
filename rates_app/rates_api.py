@@ -23,7 +23,7 @@ def check() -> Response:
 def rates_by_date(rate_date: str) -> Response:
     """ rates_by_date """
 
-    time.sleep(0.1)
+    time.sleep(1)
 
     for rate in rates:
 
