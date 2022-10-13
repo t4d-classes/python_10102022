@@ -9,9 +9,11 @@ from rates_api_server import rates_api_server
 from rates_demo import get_rates_threadpool
 
 
+print("running rates app", __name__)    
+
 if __name__ == '__main__':
 
-    freeze_support()
+    # freeze_support()
 
     with rates_api_server():
 
