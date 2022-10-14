@@ -3,6 +3,8 @@
 from datetime import date
 from concurrent.futures import ThreadPoolExecutor
 import time
+import aiohttp
+import asyncio
 
 import requests
 
@@ -61,4 +63,30 @@ def get_rates_threadpool(start_date: date, end_date: date) -> list[str]:
 
     return rate_responses
 
+
+async def get_rate_async(session: aiohttp.ClientSession, business_day: date) -> str:
+    """ get rate task method """
+
+    currency_symbols = ['USD', 'CAD', 'GBP']
+
+    rate_url = "".join([
+        "http://127.0.0.1:5050/api/",
+        str(business_day),
+        "?base=INR&symbols=",
+        ",".join(currency_symbols)
+    ])
+
+    
+    async with session.get(rate_url) as resp:
+      return str(await resp.json())
+
+
+async def get_rates_async(start_date: date, end_date: date) -> list[str]:
+    """ get rates """
+
+    async with aiohttp.ClientSession() as session:
+      return await asyncio.gather(*[
+          get_rate_async(session, business_day)
+          for business_day in business_days(start_date, end_date)
+      ])
 
