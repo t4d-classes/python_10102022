@@ -1,11 +1,13 @@
 import subprocess
 
-result = subprocess.run("where chkdsk.exe")
+result = subprocess.run(
+    "brew info azure-cli",
+    shell=True,
+    capture_output=True,
+    text=True)
 
 print(f"result: {result}")
 print(f"return code: {result.returncode}")
 
-result = subprocess.run("where chkdsk12.exe")
+print(result.stdout)
 
-print(f"result: {result}")
-print(f"return code: {result.returncode}")

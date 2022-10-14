@@ -1,8 +1,8 @@
 import re
 
-content = "as busy as a bee"
+# content = "as busy as a bee"
 
-r = re.compile(r"as")
+# r = re.compile(r"as")
 
 # match the regular expression from the start of the content
 # print(r.match(content))
@@ -14,7 +14,7 @@ r = re.compile(r"as")
 # print(r.findall(content))
 
 # returns all matches as match objects
-# print(list(r.finditer(content)))
+#print(list(r.finditer(content)))
 
 # content = "red|green;blue:yellow"
 # r = re.compile(r"\||;|:")
@@ -22,29 +22,29 @@ r = re.compile(r"as")
 # print(r.sub(",", content))
 
 # content = "red|green;blue:yellow"
-# r = re.compile(r"[|;:]")
+# r = re.compile(r"[];:]")
 # print(r.split(content))
 # print(r.sub(",", content))
 
-# content = """apple
-# banana
-# apple
-# Banana
-# banana
-# apple
-# avocado
-# """
+content = """apple
+banana
+apple
+Banana
+banana
+apple
+avocado
+"""
 
-# # r = re.compile(r"^apple", re.MULTILINE)
-# # r = re.compile(r"^a[a-z]*", re.MULTILINE)
+# r = re.compile(r"^apple", re.MULTILINE)
+# r = re.compile(r"^a[a-z]*", re.MULTILINE)
 # r = re.compile(r"[a-z]*a$", re.MULTILINE | re.IGNORECASE)
 
-# print(list(r.finditer(content)))
+#print(list(r.finditer(content)))
 
 # content = "<b>content 1</b><span>test</span><b>content 2</b><div>fun</div>"
 
-# # r = re.compile(r"<span>(.*)</span>")
-# # r = re.compile(r"<b>(.*?)</b>")
+# r = re.compile(r"<span>(.*)</span>")
+# r = re.compile(r"<b>(.*?)</b>")
 # r = re.compile(r"<.*?>(.*?)</.*?>")
 
 # for match in r.finditer(content):

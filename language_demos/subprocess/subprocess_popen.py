@@ -1,9 +1,9 @@
 import subprocess
 
 p = subprocess.Popen(
-    "where chkdsk.exe",
+    "brew info azure-cli",
     stdout=subprocess.PIPE,
-    stderr=subprocess.STDOUT)
+    stderr=subprocess.STDOUT, shell=True)
 
 retval = p.wait()
 print(retval)
