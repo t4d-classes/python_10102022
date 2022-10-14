@@ -15,15 +15,13 @@ class TestBusinessDays(TestCase):
     def test_business_days(self, holidays: Mock) -> None:
         """ Business Days Test """
 
+        # arrange
+
         holidays.UnitedStates.return_value = [
             date(2021, 4, 7), date(2021, 4, 8)]
 
         start_date = date(2021, 4, 1)
         end_date = date(2021, 4, 20)
-
-        days = business_days_list(start_date, end_date)
-
-        self.assertEqual(len(days), 12)
 
         expected_days = [
             date(2021, 4, 1),
@@ -40,6 +38,13 @@ class TestBusinessDays(TestCase):
             date(2021, 4, 20),
         ]
 
+        # act
+
+        days = business_days_list(start_date, end_date)
+
+        # assert
+
+        self.assertEqual(len(days), 12)
         self.assertListEqual(days, expected_days)
 
     @patch("code.simple_rates_client.business_days.holidays")
@@ -52,7 +57,9 @@ class TestBusinessDays(TestCase):
         start_date = date(2021, 4, 20)
         end_date = date(2021, 4, 1)
 
+        # assert
         with self.assertRaises(EndBeforeStartException):
+            # act
             business_days_list(start_date, end_date)
 
 
