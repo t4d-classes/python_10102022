@@ -9,9 +9,9 @@ class HistoryStorage(ABC):
     """ history storage abstract class """
 
     @abstractmethod
-    def load(self, history: History) -> None:
+    async def load(self, history: History) -> None:
         """ load history """
 
     @abstractmethod
-    def save(self, history: History) -> None:
+    async def save(self, history: History) -> None:
         """ save history"""

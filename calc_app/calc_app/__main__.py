@@ -1,5 +1,7 @@
 """ calc app main """
 
+import asyncio
+
 from calc_app.history_file_storage import HistoryFileStorage
 from calc_app.history_storage import HistoryStorage
 from calc_app.user_input import input_command, input_operand, input_entry_id
@@ -11,7 +13,7 @@ from calc_app.history import History
 from calc_app.history_list import HistoryList
 
 
-def app() -> None:
+async def app() -> None:
     """ calc app main function """
 
     history: History = HistoryList()
@@ -36,10 +38,10 @@ def app() -> None:
         elif command == "result":
             output_result(calculator.get_result())
         elif command == "save":
-            history_storage.save(history)
+            await history_storage.save(history)
             print("history saved")
         elif command == "load":
-            history_storage.load(history)
+            await history_storage.load(history)
             print("history loaded")
         else:
             output_unknown_command()
@@ -48,4 +50,4 @@ def app() -> None:
 
 # enables this module to be imported or executed
 if __name__ == '__main__':
-    app()
+    asyncio.run(app())
